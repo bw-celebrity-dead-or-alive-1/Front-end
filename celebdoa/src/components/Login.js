@@ -14,7 +14,7 @@ const Login = (props) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		clg("login submitted")
+		clg("login submitted") 
 	}
 
 	return (
