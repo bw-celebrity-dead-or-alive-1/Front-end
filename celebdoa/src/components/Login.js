@@ -18,14 +18,14 @@ const Login = (props) => {
 	}
 
 	return (
-		<>
+		<div>
 			<h1>Login</h1>
 			<form onSubmit={handleSubmit}>
 				<input type='text' name='username' value={loginFields.username} onChange={doFields}></input>
 				<input type='password' name='password' value={loginFields.password} onChange={doFields}></input>
 				<button>Login</button>
 			</form>
-		</>
+		</div>
 	);
 }
 
