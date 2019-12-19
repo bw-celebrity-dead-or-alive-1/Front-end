@@ -1,29 +1,30 @@
 import React, { useState } from "react";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-export default Navbar = () => {
+import Login from "./Login";
+import Register from "./Register";
 
+import { Navbar as NB, Nav, } from 'react-bootstrap';
+
+const Navbar = () => {
 	return (
-		<div className="container">
-			<nav>
-				<Router>
-					<ul>
-						{/* navbar to come */}
-						<Link to="/register">Register</Link> -- <Link to="/login">Login</Link>
-					</ul>
-					<Route path="/login" component={Login} />
-					<Route path="/register" component={Register} />
-				</Router>
-
+		<Router>
+			<NB bg="dark">
 				<ul>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Play DOA!</a></li>
+					<li><Link to="/register">Register</Link></li>
+					<li><Link to="/login">Login</Link></li>
 				</ul>
-			</nav>
-		</div>
+			</NB>
+			<Route path="/login" component={Login} />
+			<Route path="/register" component={Register} />
+		</Router>
+
+			// {/* <ul>
+			// 		<li><a href="#">Register</a></li>
+			// 		<li><a href="#">Login</a></li>
+			// 		<li><a href="#">Play DOA!</a></li>
+			// 	</ul> */}
 	);
 };
 
-//  Navbar;
+export default Navbar;
