@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import {
+	Button,
+	Card,
+	InputGroup,
+	FormControl
+} from 'react-bootstrap';
 
 function clg(...x) { console.log(...x) }  // because i'm sick of mistyping console.log
 
@@ -18,15 +24,32 @@ const Login = (props) => {
 	}
 
 	return (
-		<>
-			<h1>Register</h1>
+		<Card style={{ width: "35rem" }}>
 			<form onSubmit={handleSubmit}>
-				<input type='text' name='username' value={registerFields.username} onChange={doFields}></input>
-				<input type='text' name='email' value={registerFields.email} onChange={doFields}></input>
-				<input type='password' name='password' value={registerFields.password} onChange={doFields}></input>
-				<button>Join!</button>
+				<Card.Header><Card.Title bg="light">Register</Card.Title></Card.Header>
+				<Card.Body style={{ padding: "2rem" }}>
+					<InputGroup className="mb-3">
+						<FormControl
+							name='username' value={registerFields.email} onChange={doFields}
+							placeholder="Email"
+						/>
+					</InputGroup>
+					<InputGroup className="mb-3">
+						<FormControl
+							name='username' value={registerFields.username} onChange={doFields}
+							placeholder="Username"
+						/>
+					</InputGroup>
+					<InputGroup className="mb-3">
+						<FormControl
+							name='password' type="password" value={registerFields.password} onChange={doFields}
+							placeholder="Password"
+						/>
+					</InputGroup>
+					<Button variant="primary" type="submit" style={{ width: "10rem" }}>Join!</Button>
+				</Card.Body>
 			</form>
-		</>
+		</Card>
 	);
 }
 
