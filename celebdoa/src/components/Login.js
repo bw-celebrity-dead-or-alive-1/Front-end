@@ -18,14 +18,14 @@ const Login = (props) => {
 		clg(loginFields);
 	}
 
-	const handleSubmit = e => {
+	const doSubmit = e => {
 		e.preventDefault();
 		clg("login submitted")
 	}
 
 	return (
 		<Card style={{ width: "35rem" }}>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={doSubmit}>
 				<Card.Header><Card.Title bg="light">Login</Card.Title></Card.Header>
 				<Card.Body style={{ padding: "2rem" }}>
 					<InputGroup className="mb-3">
