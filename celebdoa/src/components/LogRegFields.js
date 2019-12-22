@@ -7,9 +7,13 @@ function clg(...x) {
 	console.log(...x);
 } // because i'm sick of mistyping console.log
 
-const LogReg = (props) => {
-	// clg(props);
+const LogRegFields = (props) => {
 	const isReg = props.register;
+    let title = "Login";
+
+    if (isReg) {
+       title = "Register" ;
+    }
 
 	const emailInput = useInputControl('');
 	const usernameInput = useInputControl('');
@@ -33,7 +37,7 @@ const LogReg = (props) => {
 	return (
 		<form onSubmit={doSubmit}>
 			<Card.Header>
-				<Card.Title bg="light">Register</Card.Title>
+				<Card.Title bg="light">{title}</Card.Title>
 			</Card.Header>
 			<Card.Body style={{ padding: '2rem' }}>
 				<InputGroup className="mb-3">
@@ -42,9 +46,7 @@ const LogReg = (props) => {
 				<InputGroup className="mb-3">
 					<FormControl {...usernameInput} placeholder="Username" />
 				</InputGroup>
-				<InputGroup className="mb-3">
-					<FormControl {...passwdInput} type="password" placeholder="Password" />
-				</InputGroup>
+				<EmailField {...passwdInput} isReg={isReg} />
 				<Button variant="primary" type="submit" style={{ width: '10rem' }}>
 					Join!
 				</Button>
@@ -53,4 +55,15 @@ const LogReg = (props) => {
 	);
 };
 
-export default LogReg;
+function EmailField(props) {
+	if (props.isReg) {
+		return (
+			<InputGroup className="mb-3">
+				<FormControl {...props.passwdInput} type="password" placeholder="Password" />
+			</InputGroup>
+		);
+    }
+    return (<></>)
+}
+
+export default LogRegFields;
