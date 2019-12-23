@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { Button, Card, InputGroup, FormControl } from 'react-bootstrap';
+import React from "react";
+import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
 
-import { useInputControl } from './hooks/useInputControl.js';
+import { useInputControl } from "./hooks/useInputControl.js";
 
-function clg(...x) {
-	console.log(...x);
-} // because i'm sick of mistyping console.log
+function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
 const LogRegFields = (props) => {
 	const isReg = props.register;
@@ -15,9 +13,9 @@ const LogRegFields = (props) => {
        title = "Register" ;
     }
 
-	const emailInput = useInputControl('');
-	const usernameInput = useInputControl('');
-	const passwdInput = useInputControl('');
+	const emailInput = useInputControl("");
+	const usernameInput = useInputControl("");
+	const passwdInput = useInputControl("");
 
 	const userInfo = {
 		username: usernameInput.value,
@@ -31,7 +29,7 @@ const LogRegFields = (props) => {
 
 	const doSubmit = (e) => {
 		e.preventDefault();
-		clg('login submitted', userInfo);
+		clg("login submitted", userInfo);
 	};
 
 	return (
@@ -39,7 +37,7 @@ const LogRegFields = (props) => {
 			<Card.Header>
 				<Card.Title bg="light">{title}</Card.Title>
 			</Card.Header>
-			<Card.Body style={{ padding: '2rem' }}>
+			<Card.Body style={{ padding: "2rem" }}>
 				<InputGroup className="mb-3">
 					<FormControl {...emailInput} placeholder="Email" />
 				</InputGroup>
@@ -47,7 +45,7 @@ const LogRegFields = (props) => {
 					<FormControl {...usernameInput} placeholder="Username" />
 				</InputGroup>
 				<EmailField {...passwdInput} isReg={isReg} />
-				<Button variant="primary" type="submit" style={{ width: '10rem' }}>
+				<Button variant="primary" type="submit" style={{ width: "10rem" }}>
 					Join!
 				</Button>
 			</Card.Body>
