@@ -36,7 +36,6 @@ const Login = (props) => {
 			<form onSubmit={handleSubmit}>
 				<input type='text' name='celebName' value={doaFields.celebName} placeholder="Name of celebrity (required)" onChange={doFields}></input>
 				<input type='text' name='factoid' value={doaFields.factoid} placeholder="Short factoid (required)" onChange={doFields}></input>
-				<input type='text' name='factoid' value={doaFields.factoid} placeholder="Second factoid" onChange={doFields}></input>
 				<input type='text' name='dob' value={doaFields.dob} placeholder="Date of birth" onChange={doFields}></input>
 				<input type='text' name='imageurl' value={doaFields.imageurl} placeholder="URL to image (required)" onChange={doFields}></input>
 				<input type='text' name='doa' value={doaFields.doa} placeholder="URL to image (required)" onChange={doFields}></input>
