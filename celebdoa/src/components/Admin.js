@@ -14,16 +14,21 @@ const CelebAdmin = (props) => {
 	const birthyear = useInputControl("");
 
 	// setting up local state
-	const [alive, setAlive] = useState(true)
-	const [celebs, setCelebs] = useState({
-		celebname: "",
-		imageUrl: "",
-		factoid: "",
-		birthyear: "",
-		alive: true,
-	})
+	const [alive, setAlive] = useState(true);
+	const [celebs, setCelebs] = useState([]);
 
-	useEffect(() => {},[])
+	useEffect(() => {
+		const getList = () => {
+			axios
+				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
+				.then(response => {
+					clg(25, response.data)
+					setCelebs(response.data)
+				})
+				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
+		}
+		getList();
+	}, [])
 
 	const celebInfo = {
 		celebname: celebNameInput.value,
@@ -52,36 +57,43 @@ const CelebAdmin = (props) => {
 	}
 
 	return (
-		<Card style={{ width: '40rem' }}>
-			<form onSubmit={doSubmit}>
-				<Card.Header>
-					<Card.Title bg="light">Add Celeb</Card.Title>
-				</Card.Header>
-				<Card.Body style={{ padding: "2rem" }}>
-					<InputGroup className="mb-3">
-						<FormControl style={{ minWidth: "50%" }} {...celebNameInput} placeholder="Celebrity" />
-						<FormControl {...birthyear} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
-						<ToggleButtonGroup name="alivequestion" defaultValue={true}>
-							<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onChange={doAlive} variant="outline-primary" >
-								Alive
+		<div>
+			<Card style={{ width: '40rem' }}>
+				<form onSubmit={doSubmit}>
+					<Card.Header>
+						<Card.Title bg="light">Add Celeb</Card.Title>
+					</Card.Header>
+					<Card.Body style={{ padding: "2rem" }}>
+						<InputGroup className="mb-3">
+							<FormControl style={{ minWidth: "50%" }} {...celebNameInput} placeholder="Celebrity" />
+							<FormControl {...birthyear} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
+							<ToggleButtonGroup name="alivequestion" defaultValue={true}>
+								<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onChange={doAlive} variant="outline-primary" >
+									Alive
 							</ToggleButton>
-							<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onChange={doAlive} variant="outline-primary">
-								Dead
+								<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onChange={doAlive} variant="outline-primary">
+									Dead
 							</ToggleButton>
-						</ToggleButtonGroup>
-					</InputGroup>
-					<InputGroup className="mb-3">
-						<FormControl {...imageUrlInput} placeholder="Image URL" />
-					</InputGroup>
-					<InputGroup className="mb-3">
-						<FormControl {...factoidInput} placeholder="Factoid" />
-					</InputGroup>
-					<Button variant="primary" type="submit" style={{ width: "10rem" }}>
-						Add Celeb
+							</ToggleButtonGroup>
+						</InputGroup>
+						<InputGroup className="mb-3">
+							<FormControl {...imageUrlInput} placeholder="Image URL" />
+						</InputGroup>
+						<InputGroup className="mb-3">
+							<FormControl {...factoidInput} placeholder="Factoid" />
+						</InputGroup>
+						<Button variant="primary" type="submit" style={{ width: "10rem" }}>
+							Add Celeb
 				</Button>
-				</Card.Body>
-			</form>
-		</Card>
+					</Card.Body>
+				</form>
+			</Card>
+			<Card>
+				{celebs.map(single => (
+					<div key={single.id}>{single.celebname}</div>
+				))}
+			</Card>
+		</div>
 	);
 }
 
