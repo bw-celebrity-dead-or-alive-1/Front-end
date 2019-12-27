@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
+import { Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup, ButtonGroup } from "react-bootstrap";
 
 import { useInputControl } from "./hooks/useInputControl.js";
 
@@ -28,7 +28,7 @@ const Login = (props) => {
 		factoid: factoidInput.value,
 		dob: dobInput.value,
 		imageUrl: imageUrlInput.value,
-		// alive: aliveInput.value
+		alive: alive
 	};
 
 	const doSubmit = e => {
@@ -43,9 +43,9 @@ const Login = (props) => {
 	// #endregion
 
 	const doAlive = e => {
-		const chgAlive = e.target.value;
-		clg(47, alive, chgAlive);
-		setAlive({!alive});
+		// const chgAlive = e.target.value;
+		// clg(47, alive, chgAlive);
+		// // setAlive({chgAlive});
 	};
 
 	return (
@@ -56,10 +56,19 @@ const Login = (props) => {
 				</Card.Header>
 				<Card.Body style={{ padding: "2rem" }}>
 					<InputGroup className="mb-3">
-						<FormControl style={{ minWidth: "45%" }} {...celebNameInput} placeholder="Celebrity" />
-						<FormControl {...dobInput} placeholder="Birth Year" />
-						<input value={true} checked={alive === true} onChange={doAlive} type="radio" />
-						<input value={false} checked={alive === false} onChange={doAlive} type="radio" />
+						<FormControl style={{ minWidth: "50%" }} {...celebNameInput} placeholder="Celebrity" />
+						<FormControl {...dobInput} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
+						<ToggleButtonGroup name="alivequestion">
+							<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onClick={() => setAlive(true)} onChange={doAlive} defaultChecked >
+								Alive
+							</ToggleButton>
+							<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onClick={() => setAlive(false)} onChange={doAlive}>
+								Dead
+							</ToggleButton>
+						</ToggleButtonGroup>
+						{/* <input value={false} checked={alive === false} onClick={() => setAlive(false)} type="radio" onChange={doAlive} />
+						<input value={true} checked={alive === true} onClick={() => setAlive(true)} type="radio" onChange={doAlive} />
+						<input value={false} checked={alive === false} onClick={() => setAlive(false)} type="radio" onChange={doAlive} /> */}
 					</InputGroup>
 					<InputGroup className="mb-3">
 						<FormControl {...imageUrlInput} placeholder="Image URL" />
