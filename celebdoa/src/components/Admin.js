@@ -58,11 +58,11 @@ const Login = (props) => {
 					<InputGroup className="mb-3">
 						<FormControl style={{ minWidth: "50%" }} {...celebNameInput} placeholder="Celebrity" />
 						<FormControl {...dobInput} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
-						<ToggleButtonGroup name="alivequestion">
-							<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onClick={() => setAlive(true)} onChange={doAlive} defaultChecked >
+						<ToggleButtonGroup name="alivequestion" defaultValue={true}>
+							<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onClick={() => setAlive(true)} onChange={doAlive} variant="outline-primary" >
 								Alive
 							</ToggleButton>
-							<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onClick={() => setAlive(false)} onChange={doAlive}>
+							<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onClick={() => setAlive(false)} onChange={doAlive} variant="outline-primary">
 								Dead
 							</ToggleButton>
 						</ToggleButtonGroup>
