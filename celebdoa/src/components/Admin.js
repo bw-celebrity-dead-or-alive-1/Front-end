@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup, ButtonGroup } from "react-bootstrap";
+import { Container, Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup, ButtonGroup } from "react-bootstrap";
 
 import { useInputControl } from "./hooks/useInputControl.js";
+import AdminListitem from "./AdminListitem";
+
 
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
@@ -57,8 +59,8 @@ const CelebAdmin = (props) => {
 	}
 
 	return (
-		<div>
-			<Card style={{ width: '40rem' }}>
+		<Container>
+			<Card style={{ maxWidth: '40rem' }}>
 				<form onSubmit={doSubmit}>
 					<Card.Header>
 						<Card.Title bg="light">Add Celeb</Card.Title>
@@ -84,16 +86,16 @@ const CelebAdmin = (props) => {
 						</InputGroup>
 						<Button variant="primary" type="submit" style={{ width: "10rem" }}>
 							Add Celeb
-				</Button>
+							</Button>
 					</Card.Body>
 				</form>
 			</Card>
-			<Card>
-				{celebs.map(single => (
-					<div key={single.id}>{single.celebname}</div>
-				))}
-			</Card>
-		</div>
+			{celebs.map(item => (
+				<AdminListitem key={item.id} item={item}>
+					{item.celebname}
+				</AdminListitem>
+			))}
+		</Container>
 	);
 }
 
