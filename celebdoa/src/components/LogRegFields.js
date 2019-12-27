@@ -20,11 +20,11 @@ const LogRegFields = (props) => {
 	const userInfo = {
 		username: usernameInput.value,
 		password: passwdInput.value,
-		email: passwdInput.value
+		// email: emailInput.value
 	};
 
 	if (isReg) {
-		userInfo.email = passwdInput.value;
+		userInfo.email = emailInput.value;
 	}
 
 	const doSubmit = (e) => {
@@ -38,13 +38,13 @@ const LogRegFields = (props) => {
 				<Card.Title bg="light">{title}</Card.Title>
 			</Card.Header>
 			<Card.Body style={{ padding: "2rem" }}>
-				<InputGroup className="mb-3">
-					<FormControl {...emailInput} placeholder="Email" />
-				</InputGroup>
+				<EmailField {...emailInput} isReg={isReg} />
 				<InputGroup className="mb-3">
 					<FormControl {...usernameInput} placeholder="Username" />
 				</InputGroup>
-				<EmailField {...passwdInput} isReg={isReg} />
+				<InputGroup className="mb-3">
+					<FormControl {...passwdInput} type="password" placeholder="Password" />
+				</InputGroup>
 				<Button variant="primary" type="submit" style={{ width: "10rem" }}>
 					Join!
 				</Button>
@@ -54,10 +54,11 @@ const LogRegFields = (props) => {
 };
 
 function EmailField(props) {
+	clg(props.emailInput)
 	if (props.isReg) {
 		return (
 			<InputGroup className="mb-3">
-				<FormControl {...props.passwdInput} type="password" placeholder="Password" />
+				<FormControl {...props.emailInput} placeholder="Email" />
 			</InputGroup>
 		);
     }
