@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Admin from "./components/Admin";
+import CelebAdmin from "./components/Admin";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,7 +25,7 @@ function App() {
 				<Container as={sContainer}>
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
-					<Route path="/admin" component={Admin} />
+					<Route path="/admin" component={CelebAdmin} />
 				</Container>
 			</Router>
 		</div>
