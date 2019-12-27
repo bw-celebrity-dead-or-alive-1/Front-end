@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useState } from 'react';
 import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
 
 import { useInputControl } from "./hooks/useInputControl.js";
@@ -6,28 +6,29 @@ import { useInputControl } from "./hooks/useInputControl.js";
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
 const Login = (props) => {
+	const [alive, setAlive] = useState(true)
+
 	// #region upper component 
 	const celebNameInput = useInputControl("");
 	const factoidInput = useInputControl("");
 	const imageUrlInput = useInputControl("");
-	const aliveInput = useInputControl("");
 	const dobInput = useInputControl("");
 
 
-	const chkAliveField = () => {
-		if (aliveInput.value.length > 1) {
-			aliveInput.value = aliveInput.value.charAt(aliveInput.value.length - 1);
-			clg(18, aliveInput)
-		}
-		return aliveInput.value
-	}
+	// const chkAliveField = () => {
+	// 	if (aliveInput.value.length > 1) {
+	// 		aliveInput.value = aliveInput.value.charAt(aliveInput.value.length - 1);
+	// 		clg(18, aliveInput)
+	// 	}
+	// 	return aliveInput.value
+	// }
 
 	const celebInfo = {
 		celebName: celebNameInput.value,
 		factoid: factoidInput.value,
 		dob: dobInput.value,
 		imageUrl: imageUrlInput.value,
-		alive: aliveInput.value
+		// alive: aliveInput.value
 	};
 
 	const doSubmit = e => {
@@ -41,6 +42,12 @@ const Login = (props) => {
 	}
 	// #endregion
 
+	const doAlive = e => {
+		const chgAlive = e.target.value;
+		clg(47, alive, chgAlive);
+		setAlive({!alive});
+	};
+
 	return (
 		<Card style={{ width: '40rem' }}>
 			<form onSubmit={doSubmit}>
@@ -51,11 +58,8 @@ const Login = (props) => {
 					<InputGroup className="mb-3">
 						<FormControl style={{ minWidth: "45%" }} {...celebNameInput} placeholder="Celebrity" />
 						<FormControl {...dobInput} placeholder="Birth Year" />
-						<FormControl
-							onChange={aliveInput.onChange}
-							value={chkAliveField()}
-							placeholder="Alive? Put Y or N."
-						/>
+						<input value={true} checked={alive === true} onChange={doAlive} type="radio" />
+						<input value={false} checked={alive === false} onChange={doAlive} type="radio" />
 					</InputGroup>
 					<InputGroup className="mb-3">
 						<FormControl {...imageUrlInput} placeholder="Image URL" />
