@@ -20,7 +20,7 @@ const LogRegFields = (props) => {
 	const userInfo = {
 		username: usernameInput.value,
 		password: passwdInput.value,
-		// email: emailInput.value
+		email: emailInput.value
 	};
 
 	if (isReg) {
@@ -38,7 +38,7 @@ const LogRegFields = (props) => {
 				<Card.Title bg="light">{title}</Card.Title>
 			</Card.Header>
 			<Card.Body style={{ padding: "2rem" }}>
-				<EmailField {...emailInput} isReg={isReg} />
+				<EmailField emailInput={emailInput} isReg={isReg} />
 				<InputGroup className="mb-3">
 					<FormControl {...usernameInput} placeholder="Username" />
 				</InputGroup>
