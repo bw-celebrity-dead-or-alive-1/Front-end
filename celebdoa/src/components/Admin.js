@@ -60,7 +60,7 @@ const CelebAdmin = (props) => {
 
 	return (
 		<Container>
-			<Card style={{ maxWidth: '40rem' }}>
+			<Card style={{ maxWidth: '40rem', margin: "auto"  }}>
 				<form onSubmit={doSubmit}>
 					<Card.Header>
 						<Card.Title bg="light">Add Celeb</Card.Title>
@@ -68,7 +68,6 @@ const CelebAdmin = (props) => {
 					<Card.Body style={{ padding: "2rem" }}>
 						<InputGroup className="mb-3">
 							<FormControl style={{ minWidth: "50%" }} {...celebNameInput} placeholder="Celebrity" />
-							<FormControl {...birthyear} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
 							<ToggleButtonGroup name="alivequestion" defaultValue={true}>
 								<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onChange={doAlive} variant="outline-primary" >
 									Alive
@@ -79,6 +78,7 @@ const CelebAdmin = (props) => {
 							</ToggleButtonGroup>
 						</InputGroup>
 						<InputGroup className="mb-3">
+							<FormControl {...birthyear} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
 							<FormControl {...imageUrlInput} placeholder="Image URL" />
 						</InputGroup>
 						<InputGroup className="mb-3">

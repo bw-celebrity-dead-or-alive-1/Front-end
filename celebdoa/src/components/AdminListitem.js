@@ -10,7 +10,7 @@ const AdminListItem = props => {
 	// clg(title);
 
 	return (
-		<Card style={{ padding: ".5em", maxWidth: '40rem', textAlign: 'left' }}>
+		<Card style={{ padding: ".5em", maxWidth: '40rem', textAlign: 'left', margin: "auto" }}>
 			<Card.Body style={{ margin: "0", padding: "0" }}>
 				<Row>
 					<Col style={{ maxWidth: '120px' }}>
