@@ -22,7 +22,6 @@ const LogRegFields = (props) => {
 	const userInfo = {
 		username: usernameInput.value,
 		password: passwdInput.value,
-		// email: emailInput.value
 	};
 
 	if (isReg) {
@@ -34,18 +33,17 @@ const LogRegFields = (props) => {
 		const make = []
 		Object.keys(userInfo).forEach(e => {
 			if (userInfo[e] === "") {
-				// clg(36, userInfo[e])
 				make.push(`"${e}" field cannot be empty.`)
 			}
 		})
-		setValidate(make)
-		clg(42,validate)
-		if (validate.length !== 0) {
+		if (make.length !== 0) {
+			setValidate(make)
 			return
 		} else {
-			
 			clg("login submitted", userInfo);
-			
+			/* 
+			form submission here
+			 */
 		}
 	};
 
