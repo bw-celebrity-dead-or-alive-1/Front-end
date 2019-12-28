@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Button, Card, InputGroup, FormControl, Alert } from "react-bootstrap";
+import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
 
 import { useInputControl } from "./hooks/useInputControl.js";
+import ValidateFields from "./Validate";
+
 
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
@@ -31,9 +33,9 @@ const LogRegFields = (props) => {
 	const doSubmit = (e) => {
 		e.preventDefault();
 		const make = []
-		Object.keys(userInfo).forEach(e => {
-			if (userInfo[e] === "") {
-				make.push(`"${e}" field cannot be empty.`)
+		Object.keys(userInfo).forEach(el => {
+			if (userInfo[el] === "") {
+				make.push(`"${el}" field cannot be blank.`)
 			}
 		})
 		if (make.length !== 0) {
@@ -70,19 +72,6 @@ const LogRegFields = (props) => {
 		</div>
 	);
 };
-
-function ValidateFields(props) {
-	let display = "none"
-	if (props.validate.length !=0) {display = "block"}
-	return (
-		<Alert variant="danger" style={{ display: display }}>
-			{props.validate.map(v => {
-				// clg(80,v)
-				return `${v} `
-			})}
-		</Alert>
-	)
-}
 
 function EmailField(props) {
 	if (props.isReg) {

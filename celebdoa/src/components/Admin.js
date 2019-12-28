@@ -4,6 +4,8 @@ import { Container, Button, Card, InputGroup, FormControl, ToggleButton, ToggleB
 
 import { useInputControl } from "./hooks/useInputControl.js";
 import AdminListitem from "./AdminListitem";
+import ValidateFields from "./Validate";
+
 
 
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
@@ -18,23 +20,11 @@ const CelebAdmin = (props) => {
 	// setting up local state
 	const [alive, setAlive] = useState(true);
 	const [celebs, setCelebs] = useState([]);
-
-	useEffect(() => {
-		const getList = () => {
-			axios
-				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
-				.then(response => {
-					clg(25, response.data)
-					setCelebs(response.data)
-				})
-				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
-		}
-		getList();
-	}, [])
+	const [validate, setValidate] = useState([]);
 
 	const celebInfo = {
 		celebname: celebNameInput.value,
-		imageUrl: imageUrlInput.value,
+		image_url: imageUrlInput.value,
 		factoid: factoidInput.value,
 		birthyear: birthyear.value,
 		alive: alive
@@ -47,16 +37,45 @@ const CelebAdmin = (props) => {
 	};
 
 	const doSubmit = e => {
-		axios
-			.post(`https://herokuurl`, celebInfo)
-			.then(response => {
-
-			})
-			.catch(error => console.log(error));
-
 		e.preventDefault();
-		clg("admin page submitted", celebInfo)
+		const make = []
+		Object.keys(celebInfo).forEach(el => {
+			if (celebInfo[el] === "") {
+				make.push(`"${el}" field cannot be blank.`)
+			}
+		})
+		if (make.length !== 0) {
+			setValidate(make)
+			return
+		} else {
+			setValidate(make)
+			setCelebs([...celebs, celebInfo])
+			clg("admin page submitted", celebInfo)
+
+			// this axios is busted.
+			axios
+				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
+				.then(response => {
+					clg(response.data);
+				})
+				.catch(error => console.log("POST: ",error));
+			e.preventDefault();
+		}
 	}
+
+	useEffect(() => {
+		clg(65,"get list")
+		const getList = () => {
+			axios
+				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
+				.then(response => {
+					clg(25, response.data)
+					setCelebs(response.data)
+				})
+				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
+		}
+		getList();
+	}, [])
 
 	return (
 		<Container>
@@ -89,11 +108,10 @@ const CelebAdmin = (props) => {
 						</Button>
 					</Card.Body>
 				</form>
+				<ValidateFields validate={validate} />
 			</Card>
 			{celebs.map(item => (
-				<AdminListitem key={item.id} item={item}>
-					{item.celebname}
-				</AdminListitem>
+				<AdminListitem key={celebs.indexOf(item)} item={item} />
 			))}
 		</Container>
 	);
