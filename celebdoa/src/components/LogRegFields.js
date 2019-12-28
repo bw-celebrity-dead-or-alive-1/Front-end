@@ -40,10 +40,12 @@ const LogRegFields = (props) => {
 		})
 		setValidate(make)
 		clg(42,validate)
-		if (validate.length != 0) {
+		if (validate.length !== 0) {
 			return
 		} else {
+			
 			clg("login submitted", userInfo);
+			
 		}
 	};
 
