@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Container, Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup, ButtonGroup } from "react-bootstrap";
+import { Container, Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 
 import { useInputControl } from "./hooks/useInputControl.js";
 import AdminListitem from "./AdminListitem";
@@ -60,7 +60,7 @@ const CelebAdmin = (props) => {
 
 	return (
 		<Container>
-			<Card style={{ maxWidth: '40rem', margin: "auto"  }}>
+			<Card style={{ maxWidth: '40rem', margin: "auto" }}>
 				<form onSubmit={doSubmit}>
 					<Card.Header>
 						<Card.Title bg="light">Add Celeb</Card.Title>
@@ -86,7 +86,7 @@ const CelebAdmin = (props) => {
 						</InputGroup>
 						<Button variant="primary" type="submit" style={{ width: "10rem" }}>
 							Add Celeb
-							</Button>
+						</Button>
 					</Card.Body>
 				</form>
 			</Card>

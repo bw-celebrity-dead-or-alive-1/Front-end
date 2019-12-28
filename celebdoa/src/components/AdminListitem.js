@@ -4,10 +4,7 @@ import { Card, Image, Col, Row } from "react-bootstrap";
 function clg(...x) { console.log(...x) }
 
 const AdminListItem = props => {
-	// clg(props.item);
 	const { id, celebname, image_url, factoid, birthyear, alive } = props.item;
-
-	// clg(title);
 
 	return (
 		<Card style={{ padding: ".5em", maxWidth: '40rem', textAlign: 'left', margin: "auto" }}>
