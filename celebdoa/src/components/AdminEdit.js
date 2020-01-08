@@ -11,31 +11,25 @@ import { useInputControl } from "./hooks/useInputControl.js";
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
 const CelebEdit = (props) => {
-	clg(props.match);
-	// useInputControl setup, abstracting the basic form fields
-	const [celebName, setcelebName] = useState("");
-	const [factoid, setfactoid] = useState("");
-	const [imageUrl, setimageUrl] = useState("");
-	const [birthyear, setbirthyear] = useState("");
+	// clg(14,props);
 
 	// setting up local state
-	const [alive, setAlive] = useState(true);
-	const [celebs, setCelebs] = useState([]);
+	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: "false" });
 	const [validate, setValidate] = useState([]);
 
-	const celebInfo = {
-		celebname: celebNameInput.value,
-		image_url: imageUrlInput.value,
-		factoid: factoidInput.value,
-		birthyear: birthyear.value,
-		alive: alive
-	};
+	const celebInfo = {}
+	// form field 
+	const doFields = e => {
+		e.preventDefault();
+		setDoaFields({ ...doaFields, [e.target.name]: e.target.value });
+		clg(25,doaFields);
+	}
 
-	const doAlive = e => {
-		const chgAlive = e.target.value;
-		clg(47, chgAlive);
-		setAlive(chgAlive);
-	};
+	// const doAlive = e => {
+	// 	const chgAlive = e.target.value;
+	// 	clg(47, chgAlive);
+	// 	setAlive(chgAlive);
+	// };
 
 	const doSubmit = e => {
 		e.preventDefault();
@@ -50,7 +44,6 @@ const CelebEdit = (props) => {
 			return
 		} else {
 			setValidate(make)
-			setCelebs([...celebs, celebInfo])
 			clg("admin page submitted", celebInfo)
 
 			// this axios is busted.
@@ -65,17 +58,17 @@ const CelebEdit = (props) => {
 	}
 
 	useEffect(() => {
-		clg(65,"get list")
-		const one = () => {
-			axios
-				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
-				.then(response => {
-					clg(25, response.data)
-					setCelebs(response.data)
-				})
-				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
-		}
-		one();
+		// clg(65,"get list")
+		// const one = () => {
+		// 	axios
+		// 		.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
+		// 		.then(response => {
+		// 			clg(25, response.data)
+		// 			setCelebs(response.data)
+		// 		})
+		// 		.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
+		// }
+		// one();
 	}, [])
 
 	return (
@@ -87,25 +80,29 @@ const CelebEdit = (props) => {
 					</Card.Header>
 					<Card.Body style={{ padding: "2rem" }}>
 						<InputGroup className="mb-3">
-							<FormControl style={{ minWidth: "50%" }} {...celebNameInput} placeholder="Celebrity" />
-							<ToggleButtonGroup name="alivequestion" defaultValue={true}>
-								<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onChange={doAlive} variant="outline-primary" >
+							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%" }} />
+
+							<ToggleButtonGroup name="alive" defaultValue={doaFields.alive}>
+								<ToggleButton type="radio" value={false} checked={doaFields.alive === false} onChange={doFields} variant="outline-primary" >
 									Alive
-							</ToggleButton>
-								<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onChange={doAlive} variant="outline-primary">
+								</ToggleButton>
+								<ToggleButton type="radio" value={true} checked={doaFields.alive === true} onChange={doFields} variant="outline-primary">
 									Dead
-							</ToggleButton>
+								</ToggleButton>
 							</ToggleButtonGroup>
 						</InputGroup>
+
 						<InputGroup className="mb-3">
-							<FormControl {...birthyear} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
-							<FormControl {...imageUrlInput} placeholder="Image URL" />
+							<FormControl name="birthyear" value={doaFields.birthyear} onChange={doFields} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
+							<FormControl name="image_url" value={doaFields.image_url} onChange={doFields} placeholder="Image URL" />
 						</InputGroup>
+						
 						<InputGroup className="mb-3">
-							<FormControl {...factoidInput} placeholder="Factoid" />
+							<FormControl name="factoid" value={doaFields.factoid} onChange={doFields} placeholder="Factoid" />
 						</InputGroup>
+						
 						<Button variant="primary" type="submit" style={{ width: "10rem" }}>
-							Add Celeb
+							Edit Celeb
 						</Button>
 					</Card.Body>
 				</form>
