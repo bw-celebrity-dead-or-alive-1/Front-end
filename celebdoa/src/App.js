@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import CelebAdmin from "./components/Admin";
+import Test from "./components/test/Test.js";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,6 +28,7 @@ function App() {
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
 					<Route path="/admin" component={CelebAdmin} />
+					<Route path="/test" component={Test} />
 				</Container>
 			</Router>
 		</div>
