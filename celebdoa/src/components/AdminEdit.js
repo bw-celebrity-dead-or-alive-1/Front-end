@@ -11,7 +11,7 @@ import { useInputControl } from "./hooks/useInputControl.js";
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
 const CelebEdit = (props) => {
-	// clg(14,props);
+	const incomingId = props.match.params.id;
 
 	// setting up local state
 	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: "false" });
@@ -19,17 +19,12 @@ const CelebEdit = (props) => {
 
 	const celebInfo = {}
 	// form field 
-	const doFields = e => {
+	const doFields = async e => {
 		e.preventDefault();
-		setDoaFields({ ...doaFields, [e.target.name]: e.target.value });
+		await setDoaFields({ ...doaFields, [e.target.name]: e.target.value });
 		clg(25,doaFields);
+		clg(25,doaFields.alive);
 	}
-
-	// const doAlive = e => {
-	// 	const chgAlive = e.target.value;
-	// 	clg(47, chgAlive);
-	// 	setAlive(chgAlive);
-	// };
 
 	const doSubmit = e => {
 		e.preventDefault();
@@ -50,7 +45,7 @@ const CelebEdit = (props) => {
 			axios
 				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
-					clg(response.data);
+					clg(47,response.data);
 				})
 				.catch(error => console.log("POST: ",error));
 			e.preventDefault();
@@ -58,35 +53,40 @@ const CelebEdit = (props) => {
 	}
 
 	useEffect(() => {
-		// clg(65,"get list")
-		// const one = () => {
-		// 	axios
-		// 		.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
-		// 		.then(response => {
-		// 			clg(25, response.data)
-		// 			setCelebs(response.data)
-		// 		})
-		// 		.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
-		// }
-		// one();
+		clg(61,"get one")
+		const one = () => {
+			axios
+				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${incomingId}`)
+				.then(response => {
+					const chkAlive = response.data.alive;
+					chkAlive
+					? response.data.alive = "true"
+					: response.data.alive = "false";
+					clg(66, response.data.alive)
+					setDoaFields(response.data);
+					
+				})
+				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
+		}
+		one();
 	}, [])
 
 	return (
 		<Container>
-			<Card style={{ maxWidth: '40rem', margin: "auto" }}>
+			<Card bg="info" style={{ maxWidth: '40rem', margin: "auto" }}>
 				<form onSubmit={doSubmit}>
 					<Card.Header>
-						<Card.Title bg="light">Add Celeb</Card.Title>
+						<Card.Title>Edit Celeb</Card.Title>
 					</Card.Header>
 					<Card.Body style={{ padding: "2rem" }}>
 						<InputGroup className="mb-3">
 							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%" }} />
 
-							<ToggleButtonGroup name="alive" defaultValue={doaFields.alive}>
-								<ToggleButton type="radio" value={false} checked={doaFields.alive === false} onChange={doFields} variant="outline-primary" >
+							<ToggleButtonGroup name="alive" >
+								<ToggleButton type="radio" value={false} checked={doaFields.alive} onChange={doFields} variant="outline-primary" >
 									Alive
 								</ToggleButton>
-								<ToggleButton type="radio" value={true} checked={doaFields.alive === true} onChange={doFields} variant="outline-primary">
+								<ToggleButton type="radio" value={true} checked={doaFields.alive} onChange={doFields} variant="outline-primary">
 									Dead
 								</ToggleButton>
 							</ToggleButtonGroup>
