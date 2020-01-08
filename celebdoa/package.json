@@ -6,30 +6,15 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-<<<<<<< HEAD
-    "axios": "^0.19.0",
-<<<<<<< HEAD
-    "node-sass": "^4.13.0",
-=======
-=======
->>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
     "bootstrap": "^4.4.1",
->>>>>>> 3a14124d86356c6328fe512d898aea242476d02c
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
-<<<<<<< HEAD
-=======
     "axios": "^0.19.0",
     "node-sass": "^4.13.0",
->>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
-<<<<<<< HEAD
-    "react-scripts": "3.3.0"
-=======
     "react-scripts": "3.3.0",
     "styled-components": "^4.4.1"
->>>>>>> 3a14124d86356c6328fe512d898aea242476d02c
   },
   "scripts": {
     "start": "react-scripts start",
