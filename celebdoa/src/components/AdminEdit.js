@@ -14,7 +14,7 @@ const CelebEdit = (props) => {
 	const incomingId = props.match.params.id;
 
 	// setting up local state
-	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: "false" });
+	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: false });
 	const [validate, setValidate] = useState([]);
 
 	const celebInfo = {}
@@ -27,9 +27,12 @@ const CelebEdit = (props) => {
 	}
 	
 	const doAlive = e => {
-		const chgAlive = !e.target.value;
-		clg(31, chgAlive);
-		setDoaFields({...doaFields, alive: chgAlive});
+		const chgAlive = e.target.checked;
+		// clg(31, chgAlive);
+		setDoaFields(doaFields => {
+			return {...doaFields, alive: chgAlive}
+		})
+		// setDoaFields({...doaFields, alive: chgAlive});
 		clg(33,doaFields.alive);
 	};
 
@@ -69,7 +72,7 @@ const CelebEdit = (props) => {
 					chkAlive
 						? response.data.alive = true
 						: response.data.alive = false;
-					clg(66, response.data.alive)
+					clg(75, typeof(response.data.alive), response.data.alive)
 					setDoaFields(response.data);
 
 				})
@@ -87,7 +90,15 @@ const CelebEdit = (props) => {
 					</Card.Header>
 					<Card.Body style={{ padding: "2rem" }}>
 						<InputGroup className="mb-3">
-							<Form.Check inline label="Alive" type="checkbox" name="alive" value={doaFields.alive} onChange={doAlive} variant="outline-primary" />
+							<Form.Check inline label="Alive"
+								type="checkbox"
+								name="alive"
+								checked={doaFields.alive}
+								// value="true"
+								// checked={true}
+								onChange={doAlive}
+								variant="outline-primary"
+							/>
 							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%"}} />
 							{/* <ToggleButtonGroup name="alive" >
 								<ToggleButton type="radio" value={false} checked={doaFields.alive} onChange={doFields} variant="outline-primary" >

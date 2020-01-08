@@ -56,7 +56,7 @@ const CelebAdmin = (props) => {
 			axios
 				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
-					clg(response.data);
+					clg(59,response.data);
 				})
 				.catch(error => console.log("POST: ",error));
 			e.preventDefault();
