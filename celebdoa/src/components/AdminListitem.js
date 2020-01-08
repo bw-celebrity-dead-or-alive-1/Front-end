@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 import { Card, Image, Col, Row, Badge } from "react-bootstrap";
 
 function clg(...x) { console.log(...x) }
@@ -15,22 +17,23 @@ const AdminListItem = props => {
 						<ShowImage image={image_url} />
 					</Col>
 					<Col>
-						<Card.Title variant="secondary">{celebname}</Card.Title>
+						<Card.Title variant="secondary">
+							<Link to={`/edit/${id}`}><Badge variant="secondary">Edit</Badge></Link>
+							&nbsp;{celebname}&nbsp;
+							<Link></Link><Badge onClick={delCeleb(id)} variant="danger">Del</Badge>
+						</Card.Title>
 						<p>
 							{birthyear} -- {isAlive(alive)}<br />
 							{factoid}
 						</p>
 					</Col>
-					{/* <Col style={{ maxWidth: '60px' }}>
-						<Badge onClick={delCeleb(id)} variant="danger">Del</Badge>
-					</Col> */}
 				</Row>
 			</Card.Body>
 		</Card>
 	);
 };
 
-// const delCeleb = (id) => {
+const delCeleb = (id) => {
 // 	(id < 5)
 // 	? clg("Won't delete first 4")
 // 	: (
@@ -41,7 +44,7 @@ const AdminListItem = props => {
 // 		})
 // 		.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`))
 // 	)
-// }
+}
 
 const isAlive = arethey => {
 	return arethey
