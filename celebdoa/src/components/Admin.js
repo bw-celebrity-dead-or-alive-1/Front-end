@@ -90,10 +90,10 @@ const CelebAdmin = (props) => {
 							<ToggleButtonGroup name="alivequestion" defaultValue={true}>
 								<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onChange={doAlive} variant="outline-primary" >
 									Alive
-							</ToggleButton>
+								</ToggleButton>
 								<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onChange={doAlive} variant="outline-primary">
 									Dead
-							</ToggleButton>
+								</ToggleButton>
 							</ToggleButtonGroup>
 						</InputGroup>
 						<InputGroup className="mb-3">

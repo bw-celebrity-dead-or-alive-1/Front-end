@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Container, Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { Container, Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup, Form } from "react-bootstrap";
 
 import ValidateFields from "./Validate";
 
@@ -19,12 +19,19 @@ const CelebEdit = (props) => {
 
 	const celebInfo = {}
 	// form field 
-	const doFields = async e => {
+	const doFields = e => {
 		e.preventDefault();
-		await setDoaFields({ ...doaFields, [e.target.name]: e.target.value });
-		clg(25,doaFields);
-		clg(25,doaFields.alive);
+		setDoaFields({ ...doaFields, [e.target.name]: e.target.value });
+		clg(25, doaFields);
+		clg(25, doaFields.alive);
 	}
+	
+	const doAlive = e => {
+		const chgAlive = !e.target.value;
+		clg(31, chgAlive);
+		setDoaFields({...doaFields, alive: chgAlive});
+		clg(33,doaFields.alive);
+	};
 
 	const doSubmit = e => {
 		e.preventDefault();
@@ -45,26 +52,26 @@ const CelebEdit = (props) => {
 			axios
 				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
-					clg(47,response.data);
+					clg(47, response.data);
 				})
-				.catch(error => console.log("POST: ",error));
+				.catch(error => console.log("POST: ", error));
 			e.preventDefault();
 		}
 	}
 
 	useEffect(() => {
-		clg(61,"get one")
+		clg(61, "get one")
 		const one = () => {
 			axios
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${incomingId}`)
 				.then(response => {
 					const chkAlive = response.data.alive;
 					chkAlive
-					? response.data.alive = "true"
-					: response.data.alive = "false";
+						? response.data.alive = true
+						: response.data.alive = false;
 					clg(66, response.data.alive)
 					setDoaFields(response.data);
-					
+
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
 		}
@@ -80,27 +87,27 @@ const CelebEdit = (props) => {
 					</Card.Header>
 					<Card.Body style={{ padding: "2rem" }}>
 						<InputGroup className="mb-3">
-							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%" }} />
-
-							<ToggleButtonGroup name="alive" >
+							<Form.Check inline label="Alive" type="checkbox" name="alive" value={doaFields.alive} onChange={doAlive} variant="outline-primary" />
+							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%"}} />
+							{/* <ToggleButtonGroup name="alive" >
 								<ToggleButton type="radio" value={false} checked={doaFields.alive} onChange={doFields} variant="outline-primary" >
 									Alive
 								</ToggleButton>
 								<ToggleButton type="radio" value={true} checked={doaFields.alive} onChange={doFields} variant="outline-primary">
 									Dead
 								</ToggleButton>
-							</ToggleButtonGroup>
+							</ToggleButtonGroup> */}
 						</InputGroup>
 
 						<InputGroup className="mb-3">
 							<FormControl name="birthyear" value={doaFields.birthyear} onChange={doFields} placeholder="Birth Year" style={{ maxWidth: "25%" }} />
 							<FormControl name="image_url" value={doaFields.image_url} onChange={doFields} placeholder="Image URL" />
 						</InputGroup>
-						
+
 						<InputGroup className="mb-3">
 							<FormControl name="factoid" value={doaFields.factoid} onChange={doFields} placeholder="Factoid" />
 						</InputGroup>
-						
+
 						<Button variant="primary" type="submit" style={{ width: "10rem" }}>
 							Edit Celeb
 						</Button>
