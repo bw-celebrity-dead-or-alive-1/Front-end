@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import Navbar from "./components/Navbar";
 import { Container } from "react-bootstrap";
@@ -10,6 +11,10 @@ import CelebAdmin from "./components/Admin";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+=======
+import React from 'react';
+import Navbar from "./components/Navbar"
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 
 const sContainer = styled(Container)`
 	display: flex;

@@ -829,8 +829,11 @@
     regenerator-runtime "^0.13.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0", "@babel/runtime@^7.5.1", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6":
 =======
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.5.5":
   version "7.7.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.7.tgz#194769ca8d6d7790ec23605af9ee3e42a0aa79cf"
@@ -839,7 +842,10 @@
     regenerator-runtime "^0.13.2"
 
 "@babel/runtime@^7.5.1", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6":
+<<<<<<< HEAD
 >>>>>>> 3a14124d86356c6328fe512d898aea242476d02c
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
   version "7.7.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.6.tgz#d18c511121aff1b4f2cd1d452f1bac9601dd830f"
   integrity sha512-BWAJxpNVa0QlE5gZdWjSxXtemZyZ9RmrmVozxt3NUXeZhVIJ5ANyqmMc0JDrivBZyxUuQvFxlvH4OWWOogGfUw==
@@ -2554,6 +2560,9 @@ camelcase@5.3.1, camelcase@^5.0.0, camelcase@^5.3.1:
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 camelcase@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-2.1.1.tgz#7c1d16d679a1bbe59ca02cacecfb011e201f5a1f"
@@ -4700,6 +4709,10 @@ glob-to-regexp@^0.3.0:
   resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.3.0.tgz#8c5a1494d2066c570cc3bfe4496175acc4d502ab"
   integrity sha1-jFoUlNIGbFcMw7/kSWF1rMTVAqs=
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 glob@^7.0.0, glob@^7.0.3, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@~7.1.1:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
@@ -5229,6 +5242,10 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 inherits@2, inherits@2.0.4, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.0, inherits@~2.0.1, inherits@~2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
@@ -5609,6 +5626,9 @@ is-typedarray@~1.0.0:
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
@@ -6493,6 +6513,10 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5, lodash@~4.17.10:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
@@ -6639,6 +6663,9 @@ memory-fs@^0.5.0:
     readable-stream "^2.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 meow@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
@@ -6790,6 +6817,10 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
   integrity sha1-9sAMHAsIIkblxNmd+4x8CDsrWCo=
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 minimatch@3.0.4, minimatch@^3.0.4, minimatch@~3.0.2:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
@@ -6802,6 +6833,10 @@ minimist@0.0.8:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
   integrity sha1-hX/Kv8M5fSYluCKCYuhqp6ARsF0=
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
@@ -6887,6 +6922,10 @@ mixin-object@^2.0.1:
     for-in "^0.1.3"
     is-extendable "^0.1.1"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
@@ -6944,6 +6983,10 @@ mute-stream@0.0.8:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 nan@^2.12.1, nan@^2.13.2:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
@@ -7110,6 +7153,10 @@ node-releases@^1.1.41:
   dependencies:
     semver "^6.3.0"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 node-sass@^4.13.0:
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.13.0.tgz#b647288babdd6a1cb726de4545516b31f90da066"
@@ -7148,6 +7195,10 @@ nopt@^4.0.1:
     abbrev "1"
     osenv "^0.1.4"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.5.0.tgz#e66db1838b200c1dfc233225d12cb36520e234a8"
@@ -7210,6 +7261,10 @@ npm-run-path@^2.0.0:
   dependencies:
     path-key "^2.0.0"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 "npmlog@0 || 1 || 2 || 3 || 4", npmlog@^4.0.0, npmlog@^4.0.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-4.1.2.tgz#08a7f2a8bf734604779a9efa4ad5cc717abb954b"
@@ -7710,6 +7765,9 @@ path-to-regexp@^1.7.0:
     isarray "0.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 path-type@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -7719,8 +7777,11 @@ path-type@^1.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> 3a14124d86356c6328fe512d898aea242476d02c
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 path-type@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-2.0.0.tgz#f012ccb8415b7096fc2daa1054c3d72389594c73"
@@ -8599,7 +8660,11 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^3.0.0"
 
+<<<<<<< HEAD
 prop-types@^15.5.4, prop-types@^15.6.2, prop-types@^15.7.2:
+=======
+prop-types@^15.6.2, prop-types@^15.7.2:
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8847,16 +8912,23 @@ react-error-overlay@^6.0.4:
   integrity sha512-ueZzLmHltszTshDMwyfELDq8zOA803wQ1ZuzCccXa1m57k1PxSHfflPD5W9YIiTXLs0JTLzoj6o1LuM5N6zzNA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
 =======
 react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
 >>>>>>> 3a14124d86356c6328fe512d898aea242476d02c
+=======
+react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
@@ -8875,7 +8947,10 @@ react-overlays@^2.1.0:
     uncontrollable "^7.0.0"
     warning "^4.0.3"
 
+<<<<<<< HEAD
 >>>>>>> 3a14124d86356c6328fe512d898aea242476d02c
+=======
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 react-router-dom@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.1.2.tgz#06701b834352f44d37fbb6311f870f84c76b9c18"
@@ -9404,6 +9479,16 @@ rimraf@2.6.3:
   dependencies:
     glob "^7.1.3"
 
+<<<<<<< HEAD
+=======
+rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.3, rimraf@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
+  integrity sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==
+  dependencies:
+    glob "^7.1.3"
+
+>>>>>>> 94ade391f7e116d90ac2ed29a4734db5eadc0cdf
 ripemd160@^2.0.0, ripemd160@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-2.0.2.tgz#a1c1a6f624751577ba5d07914cbc92850585890c"
