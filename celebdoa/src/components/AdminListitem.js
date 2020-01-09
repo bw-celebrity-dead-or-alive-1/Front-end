@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 
 import { Card, Image, Col, Row, Badge } from "react-bootstrap";
 
-function clg(...x) { console.log(...x) }
+// function clg(...x) { console.log(...x) }
 
 const AdminListItem = props => {
 	const { id, celebname, image_url, factoid, birthyear, alive } = props.item;
-	clg(11,id)
 	return (
 		<Card style={{ padding: ".5em", maxWidth: '40rem', textAlign: 'left', margin: "auto" }}>
 			<Card.Body style={{ margin: "0", padding: "0" }}>

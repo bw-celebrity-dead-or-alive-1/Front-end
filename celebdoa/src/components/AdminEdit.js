@@ -19,38 +19,27 @@ const CelebEdit = (props) => {
 	const doFields = e => {
 		e.preventDefault();
 		setDoaFields({ ...doaFields, [e.target.name]: e.target.value });
-		clg(25, doaFields);
-		clg(25, doaFields.alive);
 	}
 
 	const doAlive = e => {
 		const chgAlive = e.target.checked;
-		// clg(31, chgAlive);
 		setDoaFields(doaFields => {
 			return { ...doaFields, alive: chgAlive }
 		})
-		// setDoaFields({...doaFields, alive: chgAlive});
-		clg(33, doaFields.alive);
 	};
 
 	const doSubmit = e => {
 		e.preventDefault();
-		clg(41, e.target);
 		if (buttontxt.del) {
-/* 			axios
-				.delete(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${incomingId}`)
+			axios
+				.delete(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/del/${incomingId}`)
 				.then(response => {
 					setButtontxt({ variant: "dark", button: "Deleted!" })
 					setTimeout(() => {
 						props.history.push("/admin")
 					}, 1500);
 				})
-				.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`)) */
-				setButtontxt({ variant: "dark", button: "Deleted!" })
-				setTimeout(() => {
-					props.history.push("/admin")
-				}, 1500);
-
+				.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`))
 		} else {
 			const make = []
 			Object.keys(doaFields).forEach(el => {
@@ -63,13 +52,10 @@ const CelebEdit = (props) => {
 				return
 			} else {
 				setValidate(make)
-				clg("admin page submitted", doaFields)
-
-				// this axios is busted.
 				axios
 					.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, doaFields)
 					.then(response => {
-						clg(47, response.data);
+						clg(47, "edit page submitted", response.data);
 						setButtontxt({ button: "Done!", variant: "success", del: "" })
 						setTimeout(() => {
 							props.history.push("/admin")
@@ -82,7 +68,6 @@ const CelebEdit = (props) => {
 	}
 
 	useEffect(() => {
-		clg(61, "get one")
 		const one = () => {
 			axios
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${incomingId}`)
@@ -91,7 +76,6 @@ const CelebEdit = (props) => {
 					chkAlive
 						? response.data.alive = true
 						: response.data.alive = false;
-					clg(75, typeof (response.data.alive), response.data.alive)
 					setDoaFields(response.data);
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
