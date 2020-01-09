@@ -70,7 +70,7 @@ const CelebAdmin = (props) => {
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
 				.then(response => {
 					clg(25, response.data)
-					setCelebs(response.data)
+					setCelebs(response.data.reverse())
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
 		}

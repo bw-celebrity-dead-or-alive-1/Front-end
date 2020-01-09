@@ -53,7 +53,7 @@ const CelebEdit = (props) => {
 
 			// this axios is busted.
 			axios
-				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
+				.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
 					clg(47, response.data);
 				})
