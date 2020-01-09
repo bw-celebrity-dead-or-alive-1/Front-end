@@ -17,7 +17,6 @@ const CelebEdit = (props) => {
 	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: false });
 	const [validate, setValidate] = useState([]);
 
-	const celebInfo = {}
 	// form field 
 	const doFields = e => {
 		e.preventDefault();
@@ -39,8 +38,8 @@ const CelebEdit = (props) => {
 	const doSubmit = e => {
 		e.preventDefault();
 		const make = []
-		Object.keys(celebInfo).forEach(el => {
-			if (celebInfo[el] === "") {
+		Object.keys(doaFields).forEach(el => {
+			if (doaFields[el] === "") {
 				make.push(`"${el}" field cannot be blank.`)
 			}
 		})
@@ -49,15 +48,15 @@ const CelebEdit = (props) => {
 			return
 		} else {
 			setValidate(make)
-			clg("admin page submitted", celebInfo)
+			clg("admin page submitted", doaFields)
 
 			// this axios is busted.
 			axios
-				.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
+				.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, doaFields)
 				.then(response => {
 					clg(47, response.data);
 				})
-				.catch(error => console.log("POST: ", error));
+				.catch(error => console.log("AdminEdit 60 PUT error: ",error));
 			e.preventDefault();
 		}
 	}

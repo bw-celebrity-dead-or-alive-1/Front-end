@@ -20,7 +20,7 @@ const AdminListItem = props => {
 						<Card.Title variant="secondary">
 							<Link to={`/edit/${id}`}><Badge variant="secondary">Edit</Badge></Link>
 							&nbsp;{celebname}&nbsp;
-							<Link></Link><Badge onClick={delCeleb(id)} variant="danger">Del</Badge>
+							<Link><Badge onClick={delCeleb(id)} variant="danger">Del</Badge></Link>
 						</Card.Title>
 						<p>
 							{birthyear} -- {isAlive(alive)}<br />
@@ -34,16 +34,12 @@ const AdminListItem = props => {
 };
 
 const delCeleb = (id) => {
-// 	(id < 5)
-// 	? clg("Won't delete first 4")
-// 	: (
-// 		axios
-// 		.delete(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${id}`)
-// 		.then(response => {
-// 			clg(42, response.data)
-// 		})
-// 		.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`))
-// 	)
+		axios
+		.delete(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${id}`)
+		.then(response => {
+			clg(42, response.data)
+		})
+		.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`))
 }
 
 const isAlive = arethey => {
