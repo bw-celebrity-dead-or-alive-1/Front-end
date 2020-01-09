@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Container, Button, Card, InputGroup, FormControl, ToggleButton, ToggleButtonGroup, Form } from "react-bootstrap";
+import { Container, Button, Card, InputGroup, FormControl, Form } from "react-bootstrap";
 
 import ValidateFields from "./Validate";
-
-import { useInputControl } from "./hooks/useInputControl.js";
-
 
 
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
@@ -16,6 +13,7 @@ const CelebEdit = (props) => {
 	// setting up local state
 	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: false });
 	const [validate, setValidate] = useState([]);
+	const [buttontxt, setButtontxt] = useState({ button: "Edit Celeb", variant: "primary", del: false });
 
 	// form field 
 	const doFields = e => {
@@ -24,40 +22,62 @@ const CelebEdit = (props) => {
 		clg(25, doaFields);
 		clg(25, doaFields.alive);
 	}
-	
+
 	const doAlive = e => {
 		const chgAlive = e.target.checked;
 		// clg(31, chgAlive);
 		setDoaFields(doaFields => {
-			return {...doaFields, alive: chgAlive}
+			return { ...doaFields, alive: chgAlive }
 		})
 		// setDoaFields({...doaFields, alive: chgAlive});
-		clg(33,doaFields.alive);
+		clg(33, doaFields.alive);
 	};
 
 	const doSubmit = e => {
 		e.preventDefault();
-		const make = []
-		Object.keys(doaFields).forEach(el => {
-			if (doaFields[el] === "") {
-				make.push(`"${el}" field cannot be blank.`)
-			}
-		})
-		if (make.length !== 0) {
-			setValidate(make)
-			return
-		} else {
-			setValidate(make)
-			clg("admin page submitted", doaFields)
-
-			// this axios is busted.
-			axios
-				.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, doaFields)
+		clg(41, e.target);
+		if (buttontxt.del) {
+/* 			axios
+				.delete(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${incomingId}`)
 				.then(response => {
-					clg(47, response.data);
+					setButtontxt({ variant: "dark", button: "Deleted!" })
+					setTimeout(() => {
+						props.history.push("/admin")
+					}, 1500);
 				})
-				.catch(error => console.log("AdminEdit 60 PUT error: ",error));
-			e.preventDefault();
+				.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`)) */
+				setButtontxt({ variant: "dark", button: "Deleted!" })
+				setTimeout(() => {
+					props.history.push("/admin")
+				}, 1500);
+
+		} else {
+			const make = []
+			Object.keys(doaFields).forEach(el => {
+				if (doaFields[el] === "") {
+					make.push(`"${el}" field cannot be blank.`)
+				}
+			})
+			if (make.length !== 0) {
+				setValidate(make)
+				return
+			} else {
+				setValidate(make)
+				clg("admin page submitted", doaFields)
+
+				// this axios is busted.
+				axios
+					.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, doaFields)
+					.then(response => {
+						clg(47, response.data);
+						setButtontxt({ button: "Done!", variant: "success", del: "" })
+						setTimeout(() => {
+							props.history.push("/admin")
+						}, 1500);
+					})
+					.catch(error => console.log("AdminEdit 60 PUT error: ", error));
+				e.preventDefault();
+			}
 		}
 	}
 
@@ -71,14 +91,13 @@ const CelebEdit = (props) => {
 					chkAlive
 						? response.data.alive = true
 						: response.data.alive = false;
-					clg(75, typeof(response.data.alive), response.data.alive)
+					clg(75, typeof (response.data.alive), response.data.alive)
 					setDoaFields(response.data);
-
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
 		}
 		one();
-	}, [])
+	}, [incomingId])
 
 	return (
 		<Container>
@@ -98,15 +117,7 @@ const CelebEdit = (props) => {
 								onChange={doAlive}
 								variant="outline-primary"
 							/>
-							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%"}} />
-							{/* <ToggleButtonGroup name="alive" >
-								<ToggleButton type="radio" value={false} checked={doaFields.alive} onChange={doFields} variant="outline-primary" >
-									Alive
-								</ToggleButton>
-								<ToggleButton type="radio" value={true} checked={doaFields.alive} onChange={doFields} variant="outline-primary">
-									Dead
-								</ToggleButton>
-							</ToggleButtonGroup> */}
+							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%" }} />
 						</InputGroup>
 
 						<InputGroup className="mb-3">
@@ -118,9 +129,18 @@ const CelebEdit = (props) => {
 							<FormControl name="factoid" value={doaFields.factoid} onChange={doFields} placeholder="Factoid" />
 						</InputGroup>
 
-						<Button variant="primary" type="submit" style={{ width: "10rem" }}>
-							Edit Celeb
+						<Button variant={buttontxt.variant} type="submit" style={{ width: "10rem", margin: "0 30px 0 0" }}>
+							{buttontxt.button}
 						</Button>
+						<Form.Check inline label="Delete?"
+							type="checkbox"
+							name="delete"
+							checked={buttontxt.del}
+							// value="true"
+							// checked={true}
+							onClick={() => { setButtontxt({ button: "Edit Celeb", variant: "primary", del: !buttontxt.del }) }}
+							variant="outline-primary"
+						/>
 					</Card.Body>
 				</form>
 				<ValidateFields validate={validate} />
