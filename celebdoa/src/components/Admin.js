@@ -7,7 +7,6 @@ import AdminListitem from "./AdminListitem";
 import ValidateFields from "./Validate";
 
 
-
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
 const CelebAdmin = (props) => {
@@ -55,7 +54,7 @@ const CelebAdmin = (props) => {
 			axios
 				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
-					clg(59,response.data);
+					clg(57,"Form Submitted.", response.data);
 				})
 				.catch(error => console.log("Admin 61 POST error: ",error));
 			e.preventDefault();
@@ -68,8 +67,10 @@ const CelebAdmin = (props) => {
 			axios
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
 				.then(response => {
-					clg(25, response.data)
-					setCelebs(response.data.reverse())
+					clg(70, response.data)
+					const ordered = response.data.sort((a,b) => {return a.id - b.id})
+					clg(72, ordered)
+					setCelebs(ordered.reverse())
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
 		}

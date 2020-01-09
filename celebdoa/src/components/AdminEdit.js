@@ -25,32 +25,23 @@ const CelebEdit = (props) => {
 
 	const doAlive = e => {
 		const chgAlive = e.target.checked;
-		// clg(31, chgAlive);
 		setDoaFields(doaFields => {
 			return { ...doaFields, alive: chgAlive }
 		})
-		// setDoaFields({...doaFields, alive: chgAlive});
-		clg(33, doaFields.alive);
 	};
 
 	const doSubmit = e => {
 		e.preventDefault();
-		clg(41, e.target);
 		if (buttontxt.del) {
-/* 			axios
-				.delete(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${incomingId}`)
+			axios
+				.delete(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/del/${incomingId}`)
 				.then(response => {
 					setButtontxt({ variant: "dark", button: "Deleted!" })
 					setTimeout(() => {
 						props.history.push("/admin")
 					}, 1500);
 				})
-				.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`)) */
-				setButtontxt({ variant: "dark", button: "Deleted!" })
-				setTimeout(() => {
-					props.history.push("/admin")
-				}, 1500);
-
+				.catch(err => console.error(`>>> PROBLEM -- delete > axios :: ${err}`))
 		} else {
 			const make = []
 			Object.keys(doaFields).forEach(el => {
