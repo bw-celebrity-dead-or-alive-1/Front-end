@@ -60,7 +60,7 @@ const ShowImage = props => {
 				width: "100px",
 				height: "100px",
 				objectFit: "cover",
-				objectPosition: "0 80%"
+				objectPosition: "50% 80%"
 			}}
 			src={props.image}
 		/>
