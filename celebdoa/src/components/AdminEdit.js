@@ -19,8 +19,6 @@ const CelebEdit = (props) => {
 	const doFields = e => {
 		e.preventDefault();
 		setDoaFields({ ...doaFields, [e.target.name]: e.target.value });
-		clg(25, doaFields);
-		clg(25, doaFields.alive);
 	}
 
 	const doAlive = e => {
@@ -54,13 +52,10 @@ const CelebEdit = (props) => {
 				return
 			} else {
 				setValidate(make)
-				clg("admin page submitted", doaFields)
-
-				// this axios is busted.
 				axios
 					.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, doaFields)
 					.then(response => {
-						clg(47, response.data);
+						clg(47, "edit page submitted", response.data);
 						setButtontxt({ button: "Done!", variant: "success", del: "" })
 						setTimeout(() => {
 							props.history.push("/admin")
@@ -73,7 +68,6 @@ const CelebEdit = (props) => {
 	}
 
 	useEffect(() => {
-		clg(61, "get one")
 		const one = () => {
 			axios
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb/${incomingId}`)
@@ -82,7 +76,6 @@ const CelebEdit = (props) => {
 					chkAlive
 						? response.data.alive = true
 						: response.data.alive = false;
-					clg(75, typeof (response.data.alive), response.data.alive)
 					setDoaFields(response.data);
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))

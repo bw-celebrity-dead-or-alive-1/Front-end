@@ -31,7 +31,6 @@ const CelebAdmin = (props) => {
 
 	const doAlive = e => {
 		const chgAlive = e.target.value;
-		clg(47, chgAlive);
 		setAlive(chgAlive);
 	};
 
@@ -48,9 +47,7 @@ const CelebAdmin = (props) => {
 			return
 		} else {
 			setValidate(make)
-			setCelebs([...celebs, celebInfo])
-			clg("admin page submitted", celebInfo)
-
+			setCelebs([celebInfo, ...celebs ])
 			axios
 				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
@@ -62,14 +59,11 @@ const CelebAdmin = (props) => {
 	}
 
 	useEffect(() => {
-		clg(65,"get list")
 		const getList = () => {
 			axios
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
 				.then(response => {
-					clg(70, response.data)
 					const ordered = response.data.sort((a,b) => {return a.id - b.id})
-					clg(72, ordered)
 					setCelebs(ordered.reverse())
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))

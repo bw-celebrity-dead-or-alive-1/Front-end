@@ -6,6 +6,5 @@ export const useInputControl = incoming => {
 		ev => setValue(ev.currentTarget.value),
 		[]
 	);
-	console.log(value)
 	return { value, onChange };
 };

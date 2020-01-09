@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Card, Image, Col, Row, Badge } from "react-bootstrap";
 
-function clg(...x) { console.log(...x) }
+// function clg(...x) { console.log(...x) }
 
 const AdminListItem = props => {
 	const { id, celebname, image_url, factoid, birthyear, alive } = props.item;
