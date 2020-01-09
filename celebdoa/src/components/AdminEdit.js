@@ -14,10 +14,9 @@ const CelebEdit = (props) => {
 	const incomingId = props.match.params.id;
 
 	// setting up local state
-	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: "false" });
+	const [doaFields, setDoaFields] = useState({ celebname: "", image_url: "", factoid: "", birthyear: "", alive: false });
 	const [validate, setValidate] = useState([]);
 
-	const celebInfo = {}
 	// form field 
 	const doFields = e => {
 		e.preventDefault();
@@ -27,17 +26,20 @@ const CelebEdit = (props) => {
 	}
 	
 	const doAlive = e => {
-		const chgAlive = !e.target.value;
-		clg(31, chgAlive);
-		setDoaFields({...doaFields, alive: chgAlive});
+		const chgAlive = e.target.checked;
+		// clg(31, chgAlive);
+		setDoaFields(doaFields => {
+			return {...doaFields, alive: chgAlive}
+		})
+		// setDoaFields({...doaFields, alive: chgAlive});
 		clg(33,doaFields.alive);
 	};
 
 	const doSubmit = e => {
 		e.preventDefault();
 		const make = []
-		Object.keys(celebInfo).forEach(el => {
-			if (celebInfo[el] === "") {
+		Object.keys(doaFields).forEach(el => {
+			if (doaFields[el] === "") {
 				make.push(`"${el}" field cannot be blank.`)
 			}
 		})
@@ -46,15 +48,15 @@ const CelebEdit = (props) => {
 			return
 		} else {
 			setValidate(make)
-			clg("admin page submitted", celebInfo)
+			clg("admin page submitted", doaFields)
 
 			// this axios is busted.
 			axios
-				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
+				.put(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, doaFields)
 				.then(response => {
 					clg(47, response.data);
 				})
-				.catch(error => console.log("POST: ", error));
+				.catch(error => console.log("AdminEdit 60 PUT error: ",error));
 			e.preventDefault();
 		}
 	}
@@ -69,7 +71,7 @@ const CelebEdit = (props) => {
 					chkAlive
 						? response.data.alive = true
 						: response.data.alive = false;
-					clg(66, response.data.alive)
+					clg(75, typeof(response.data.alive), response.data.alive)
 					setDoaFields(response.data);
 
 				})
@@ -87,7 +89,15 @@ const CelebEdit = (props) => {
 					</Card.Header>
 					<Card.Body style={{ padding: "2rem" }}>
 						<InputGroup className="mb-3">
-							<Form.Check inline label="Alive" type="checkbox" name="alive" value={doaFields.alive} onChange={doAlive} variant="outline-primary" />
+							<Form.Check inline label="Alive"
+								type="checkbox"
+								name="alive"
+								checked={doaFields.alive}
+								// value="true"
+								// checked={true}
+								onChange={doAlive}
+								variant="outline-primary"
+							/>
 							<FormControl name="celebname" value={doaFields.celebname} onChange={doFields} style={{ minWidth: "50%"}} />
 							{/* <ToggleButtonGroup name="alive" >
 								<ToggleButton type="radio" value={false} checked={doaFields.alive} onChange={doFields} variant="outline-primary" >

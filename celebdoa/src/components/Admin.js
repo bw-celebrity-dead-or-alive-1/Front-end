@@ -52,13 +52,12 @@ const CelebAdmin = (props) => {
 			setCelebs([...celebs, celebInfo])
 			clg("admin page submitted", celebInfo)
 
-			// this axios is busted.
 			axios
 				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
-					clg(response.data);
+					clg(59,response.data);
 				})
-				.catch(error => console.log("POST: ",error));
+				.catch(error => console.log("Admin 61 POST error: ",error));
 			e.preventDefault();
 		}
 	}
@@ -70,7 +69,7 @@ const CelebAdmin = (props) => {
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
 				.then(response => {
 					clg(25, response.data)
-					setCelebs(response.data)
+					setCelebs(response.data.reverse())
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
 		}
