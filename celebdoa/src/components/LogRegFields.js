@@ -57,15 +57,11 @@ const LogRegFields = (props) => {
 			return
 		} else {
 			clg("login submitted", userInfo);
-
-			let login = "https://celebridead.herokuapp.com/users/login";
-			let register = "https://celebridead.herokuapp.com/users/register";
-
-			axios
-				.post(title == "Login" ? login : register, userInfo)
+			axiosWithAuth()
+				.post(title == "Register" ? "/users/register" : "/users/login", userInfo)
 				.then(res => {
 					clg("login: ", res);
-					localStorage.setItem("token", res.data.payload);
+					localStorage.setItem("token", res.data.token);
 				})
 				.catch(err => {
 					clg(err.message);
