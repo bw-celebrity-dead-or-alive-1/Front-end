@@ -17,11 +17,6 @@ const Navbar = () => {
 					Login
 				</Nav.Link>
 			</Nav.Item>
-			<Nav.Item>
-				<Nav.Link as={Link} to="/admin">
-					Admin
-				</Nav.Link>
-			</Nav.Item>
 		</NavbarBS>
 	);
 };
