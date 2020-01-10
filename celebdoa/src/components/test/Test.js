@@ -39,15 +39,13 @@ class Test extends React.Component {
     }
 
     handleAnswer = answer => {
-        if(!this.state.finished){
-            if(answer == this.state.celeb.status) {
-                this.state.score++;
-            }
-            this.state.celebPosition++;
-            this.state.celeb = initialList[this.state.celebPosition];
-            if(this.state.celebPosition >= initialList.length) {
-                this.state.finished = true;
-            }
+        if(answer == this.state.celeb.status) {
+            this.state.score++;
+        }
+        this.state.celebPosition++;
+        this.state.celeb = initialList[this.state.celebPosition];
+        if(this.state.celebPosition >= initialList.length) {
+            this.state.finished = true;
         }
         this.forceUpdate();
     }
