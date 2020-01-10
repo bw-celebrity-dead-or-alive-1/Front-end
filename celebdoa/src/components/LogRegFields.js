@@ -4,6 +4,8 @@ import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
 import { useInputControl } from "./hooks/useInputControl.js";
 import ValidateFields from "./Validate";
 
+import axios from 'axios';
+import { axiosWithAuth } from './axiosWithAuth';
 
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
@@ -43,9 +45,20 @@ const LogRegFields = (props) => {
 			return
 		} else {
 			clg("login submitted", userInfo);
-			/* 
-			form submission here
-			 */
+
+			let login = "https://celebridead.herokuapp.com/users/login";
+			let register = "https://celebridead.herokuapp.com/users/register";
+			
+			axios
+				.post(title == "Login" ? login : register, userInfo)
+				.then(res => {
+					clg("login: ", res);
+					localStorage.setItem("token", res.data.payload);
+					props.history.push("/test");
+				})
+				.catch(err => {
+					clg(err.message);
+				})
 		}
 	};
 
