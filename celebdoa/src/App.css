@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background-color: aquamarine;
+}
+
+.home-page{
+  text-align: center;
+  background-color:lightpink;
+  
 }
 
 .App-logo {
@@ -35,4 +42,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button{
+  background-color: blue;
 }
