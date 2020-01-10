@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "./components/Navbar";
 import { Container } from "react-bootstrap";
@@ -7,6 +8,7 @@ import styled from "styled-components";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import CelebAdmin from "./components/Admin";
+import Test from "./components/test/Test.js";
 import CelebEdit from "./components/AdminEdit";
 
 import "./App.css";
@@ -27,6 +29,7 @@ function App() {
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
 					<Route path="/admin" component={CelebAdmin} />
+					<Route path="/test" component={Test} />
 					<Route path="/edit/:id" component={CelebEdit} />
 				</Container>
 			</Router>
