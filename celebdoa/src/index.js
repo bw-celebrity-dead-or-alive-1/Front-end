@@ -19,7 +19,7 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-
+/*
 const AppWithRouter = withRouter(App);
 
 ReactDOM.render(
@@ -28,3 +28,4 @@ ReactDOM.render(
 	</Router>,
     document.getElementById('root')
 );
+*/
