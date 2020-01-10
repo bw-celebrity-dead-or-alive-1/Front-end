@@ -40,6 +40,12 @@ class Test extends React.Component {
         this.props.getCelebs();
     }
 
+    componentDidMount() {
+        axios
+            .get("https://ogr-ft-celebdoa.herokuapp.com/api/celeb")
+            .then(res => console.log(res));
+    }
+
     handleAnswer = answer => {
         if(answer == this.state.celeb.status) {
             this.state.score++;
