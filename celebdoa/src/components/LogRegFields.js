@@ -20,12 +20,24 @@ const LogRegFields = (props) => {
 	}
 
 	const emailInput = useInputControl("");
+	const firstNameInput = useInputControl("");
+	const lastNameInput = useInputControl("");
 	const usernameInput = useInputControl("");
 	const passwdInput = useInputControl("");
+
+	/*
+		  "username": "Michael",
+          "password": "goodformike",
+          "firstName": "Michael",
+          "lastName": "Evans",
+          "email": "mevans@gmail.com"
+	*/
 
 	const userInfo = {
 		username: usernameInput.value,
 		password: passwdInput.value,
+		firstName: firstNameInput.value,
+		lastName: lastNameInput.value
 	};
 
 	if (isReg) {
@@ -48,13 +60,12 @@ const LogRegFields = (props) => {
 
 			let login = "https://celebridead.herokuapp.com/users/login";
 			let register = "https://celebridead.herokuapp.com/users/register";
-			
+
 			axios
 				.post(title == "Login" ? login : register, userInfo)
 				.then(res => {
 					clg("login: ", res);
 					localStorage.setItem("token", res.data.payload);
-					props.history.push("/test");
 				})
 				.catch(err => {
 					clg(err.message);
@@ -70,6 +81,12 @@ const LogRegFields = (props) => {
 				</Card.Header>
 				<Card.Body style={{ padding: "2rem" }}>
 					<EmailField emailInput={emailInput} isReg={isReg} />
+					<InputGroup className="mb-3">
+						<FormControl {...firstNameInput} placeholder="First Name" />
+					</InputGroup>
+					<InputGroup className="mb-3">
+						<FormControl {...lastNameInput} placeholder="Last Name" />
+					</InputGroup>
 					<InputGroup className="mb-3">
 						<FormControl {...usernameInput} placeholder="Username" />
 					</InputGroup>
