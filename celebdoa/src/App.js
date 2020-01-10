@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import CelebAdmin from "./components/Admin";
 import Test from "./components/test/Test.js";
+import CelebEdit from "./components/AdminEdit";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,6 +30,7 @@ function App() {
 					<Route path="/register" component={Register} />
 					<Route path="/admin" component={CelebAdmin} />
 					<Route path="/test" component={Test} />
+					<Route path="/edit/:id" component={CelebEdit} />
 				</Container>
 			</Router>
 		</div>

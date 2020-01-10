@@ -7,7 +7,6 @@ import AdminListitem from "./AdminListitem";
 import ValidateFields from "./Validate";
 
 
-
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
 const CelebAdmin = (props) => {
@@ -32,7 +31,6 @@ const CelebAdmin = (props) => {
 
 	const doAlive = e => {
 		const chgAlive = e.target.value;
-		clg(47, chgAlive);
 		setAlive(chgAlive);
 	};
 
@@ -49,28 +47,24 @@ const CelebAdmin = (props) => {
 			return
 		} else {
 			setValidate(make)
-			setCelebs([...celebs, celebInfo])
-			clg("admin page submitted", celebInfo)
-
-			// this axios is busted.
+			setCelebs([celebInfo, ...celebs ])
 			axios
 				.post(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`, celebInfo)
 				.then(response => {
-					clg(response.data);
+					clg(57,"Form Submitted.", response.data);
 				})
-				.catch(error => console.log("POST: ",error));
+				.catch(error => console.log("Admin 61 POST error: ",error));
 			e.preventDefault();
 		}
 	}
 
 	useEffect(() => {
-		clg(65,"get list")
 		const getList = () => {
 			axios
 				.get(`https://ogr-ft-celebdoa.herokuapp.com/api/celeb`)
 				.then(response => {
-					clg(25, response.data)
-					setCelebs(response.data)
+					const ordered = response.data.sort((a,b) => {return a.id - b.id})
+					setCelebs(ordered.reverse())
 				})
 				.catch(err => console.error(`>>> PROBLEM -- List > axios :: ${err}`))
 		}
@@ -90,10 +84,10 @@ const CelebAdmin = (props) => {
 							<ToggleButtonGroup name="alivequestion" defaultValue={true}>
 								<ToggleButton type="radio" name="alive" value={true} checked={alive === true} onChange={doAlive} variant="outline-primary" >
 									Alive
-							</ToggleButton>
+								</ToggleButton>
 								<ToggleButton type="radio" name="dead" value={false} checked={alive === false} onChange={doAlive} variant="outline-primary">
 									Dead
-							</ToggleButton>
+								</ToggleButton>
 							</ToggleButtonGroup>
 						</InputGroup>
 						<InputGroup className="mb-3">
