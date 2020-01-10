@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+
+import { getCelebs } from '../../actions';
 
 import TestCard from './TestCard';
 import TestComplete from './TestComplete';
@@ -28,14 +31,13 @@ class Test extends React.Component {
         celebPosition: 0,
         score: 0,
         celeb: initialList[0],
-        finished: false
+        finished: false,
+        isTesting: false
     }
 
-    componentDidMount() {
-        axios.get("https://celebridead.herokuapp.com/celebrities")
-            .then(res => {
-                console.log(res);
-            })
+    fetchCelebs = e => {
+        e.preventDefault();
+        this.props.getCelebs();
     }
 
     handleAnswer = answer => {
@@ -63,4 +65,14 @@ class Test extends React.Component {
     }
 }
 
-export default Test;
+const mapStateToProps = state => {
+    /*
+    celebPosition: state.celebPosition,
+    score: state.score,
+    celeb: state.celeb,
+    finished: state.finished,
+    isTesting: state.isTesting
+    */
+}
+
+export default connect(mapStateToProps, { getCelebs })(Test);
