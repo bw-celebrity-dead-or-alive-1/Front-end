@@ -32,8 +32,10 @@ class Test extends React.Component {
     }
 
     componentDidMount() {
-        // Perform axios request and set the list variable to it
-        // Assign the first element in the list array to celeb
+        axios.get("https://celebridead.herokuapp.com/celebrities")
+            .then(res => {
+                console.log(res);
+            })
     }
 
     handleAnswer = answer => {
