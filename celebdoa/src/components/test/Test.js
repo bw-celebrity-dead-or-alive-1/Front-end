@@ -6,6 +6,7 @@ import { getCelebs } from '../../actions';
 
 import TestCard from './TestCard';
 import TestComplete from './TestComplete';
+import { axiosWithAuth } from '../axiosWithAuth';
 
 const initialList = [
     {
@@ -41,8 +42,8 @@ class Test extends React.Component {
     }
 
     componentDidMount() {
-        axios
-            .get("https://ogr-ft-celebdoa.herokuapp.com/api/celeb")
+        axiosWithAuth()
+            .get("/celebrities")
             .then(res => console.log(res));
     }
 
