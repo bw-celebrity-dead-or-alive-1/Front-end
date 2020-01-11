@@ -5,7 +5,9 @@ import { getCelebs } from '../../actions';
 import { Button, Card, FormGroup, Form } from "react-bootstrap";
 
 const Test = props => {
-    const [scores, setScores] = useState();
+    const [scores, setScores] = useState([]);
+    const [testing, setTesting] = useState(true);
+    const [finished, setFinished] = useState(false);
 
     const fetchCelebs = e => {
         props.getCelebs();
@@ -16,33 +18,46 @@ const Test = props => {
     }, [])
 
     useEffect(() => {
-        console.log(scores);
-    }, [scores])
+        let temp = [];
+        props.celebs.map(e => {
+            temp.push(0);
+        });
+        setScores(temp);
+    }, [props.celebs])
+
+    useEffect(() => {
+        setTesting(false);
+    }, [finished])
+
+    useEffect(() => {
+        console.log(testing);
+    }, [testing])
 
     const gradeTest = e => {
         e.preventDefault();
-        console.log(e);
+        setFinished(true);
+    }
+
+    const testAgain = () => {
+        setFinished(false);
     }
 
     const handleChange = e => {
-        let [ alive, first, last, id, status ] = e.target.value.split(',');
-        console.log(status);
-        //status = status === "true" ? true : false;
+        let [ alive, id, status ] = e.target.value.split(',');
         const ans = alive === status ? 1 : 0;
         let temp = [...scores];
-        console.log("Temp: ", temp);
-        //setScores();
-        console.log(`${first} ${last}: ${ans === 1 ? "Correct" : "Incorrect"}`);
+        temp[id] = ans;
+        setScores(temp);
     }
 
     return (
         <>
+          {!finished ? (
           <form onSubmit={gradeTest}>
 			<Card.Body style={{ padding: "2rem" }}>
               {props.celebs.map(celeb => {
                 return(
                   <div key={celeb.id}>
-                    {console.log(celeb)}
                     <img src={celeb.image_url} width="100%" />
                     <h2>{celeb.firstName} {celeb.lastName}</h2>
                     <FormGroup className="mb-3">
@@ -50,7 +65,7 @@ const Test = props => {
                         inline 
                         label="Dead" 
                         type="radio"
-                        value={[celeb.alive, celeb.firstName, celeb.lastName, celeb.id - 1, false]}
+                        value={[celeb.alive, celeb.id - 1, false]}
                         onChange={handleChange}
                         name={`${celeb.firstName}-${celeb.lastName}-${celeb.id}`}
                       />
@@ -58,7 +73,7 @@ const Test = props => {
                         inline 
                         label="Alive" 
                         type="radio"
-                        value={[celeb.alive, celeb.firstName, celeb.lastName, celeb.id - 1, true]}
+                        value={[celeb.alive, celeb.id - 1, true]}
                         onChange={handleChange}
                         name={`${celeb.firstName}-${celeb.lastName}-${celeb.id}`}
                       />
@@ -71,12 +86,17 @@ const Test = props => {
 				Grade me!
 			</Button>
 		  </form>
+          ) : (
+            <>
+                <h1>Test Complete!<br/>You scored {scores.reduce((total, acc) => total += acc, 0)} out of {scores.length}</h1>
+                <button onClick={testAgain}>Test Again?</button>
+            </>
+          )}
         </>
     )
 }
 
 const mapStateToProps = state => ({
-    isTesting: state.isTesting,
     celebs: state.celebs
 })
 
