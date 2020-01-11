@@ -1,85 +1,83 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { getCelebs } from '../../actions';
+import { Button, Card, FormGroup, Form } from "react-bootstrap";
 
-import TestCard from './TestCard';
-import TestComplete from './TestComplete';
-import { axiosWithAuth } from '../axiosWithAuth';
+const Test = props => {
+    const [scores, setScores] = useState();
 
-const initialList = [
-    {
-        name: "Celeb One",
-        status: "Dead"
-    },
-    {
-        name: "Celeb Two",
-        status: "Alive"
-    },
-    {
-        name: "Celeb Three",
-        status: "Dead"
-    },
-    {
-        name: "Celeb Four",
-        status: "Alive"
-    }
-]
-
-class Test extends React.Component {
-    state = {
-        celebPosition: 0,
-        score: 0,
-        celeb: initialList[0],
-        finished: false,
-        isTesting: false
+    const fetchCelebs = e => {
+        props.getCelebs();
     }
 
-    fetchCelebs = e => {
+    useEffect(() => {
+        fetchCelebs();
+    }, [])
+
+    useEffect(() => {
+        console.log(scores);
+    }, [scores])
+
+    const gradeTest = e => {
         e.preventDefault();
-        this.props.getCelebs();
+        console.log(e);
     }
 
-    componentDidMount() {
-        axiosWithAuth()
-            .get("/celebrities")
-            .then(res => console.log(res));
+    const handleChange = e => {
+        let [ alive, first, last, id, status ] = e.target.value.split(',');
+        console.log(status);
+        //status = status === "true" ? true : false;
+        const ans = alive === status ? 1 : 0;
+        let temp = [...scores];
+        console.log("Temp: ", temp);
+        //setScores();
+        console.log(`${first} ${last}: ${ans === 1 ? "Correct" : "Incorrect"}`);
     }
 
-    handleAnswer = answer => {
-        if(answer == this.state.celeb.status) {
-            this.state.score++;
-        }
-        this.state.celebPosition++;
-        this.state.celeb = initialList[this.state.celebPosition];
-        if(this.state.celebPosition >= initialList.length) {
-            this.state.finished = true;
-        }
-        this.forceUpdate();
-    }
-
-    render() {
-        return(
-            <>
-                {this.state.finished
-                    ? (<TestComplete score={this.state.score} questions={initialList.length}/>)
-                    : (<TestCard celeb={this.state.celeb} answer={this.handleAnswer}/>)
-                }
-                
-            </>
-        );
-    }
+    return (
+        <>
+          <form onSubmit={gradeTest}>
+			<Card.Body style={{ padding: "2rem" }}>
+              {props.celebs.map(celeb => {
+                return(
+                  <div key={celeb.id}>
+                    {console.log(celeb)}
+                    <img src={celeb.image_url} width="100%" />
+                    <h2>{celeb.firstName} {celeb.lastName}</h2>
+                    <FormGroup className="mb-3">
+                      <Form.Check 
+                        inline 
+                        label="Dead" 
+                        type="radio"
+                        value={[celeb.alive, celeb.firstName, celeb.lastName, celeb.id - 1, false]}
+                        onChange={handleChange}
+                        name={`${celeb.firstName}-${celeb.lastName}-${celeb.id}`}
+                      />
+                      <Form.Check 
+                        inline 
+                        label="Alive" 
+                        type="radio"
+                        value={[celeb.alive, celeb.firstName, celeb.lastName, celeb.id - 1, true]}
+                        onChange={handleChange}
+                        name={`${celeb.firstName}-${celeb.lastName}-${celeb.id}`}
+                      />
+                    </FormGroup>
+                  </div>
+                );
+              })}
+		    </Card.Body>
+			<Button variant="primary" type="submit" style={{ width: "10rem", margin: "0 0 1.75rem" }}>
+				Grade me!
+			</Button>
+		  </form>
+        </>
+    )
 }
 
-const mapStateToProps = state => {
-    /*
-    celebPosition: state.celebPosition,
-    score: state.score,
-    celeb: state.celeb,
-    finished: state.finished,
-    isTesting: state.isTesting
-    */
-}
+const mapStateToProps = state => ({
+    isTesting: state.isTesting,
+    celebs: state.celebs
+})
 
 export default connect(mapStateToProps, { getCelebs })(Test);

@@ -4,7 +4,6 @@ import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
 import { useInputControl } from "./hooks/useInputControl.js";
 import ValidateFields from "./Validate";
 
-import axios from 'axios';
 import { axiosWithAuth } from './axiosWithAuth';
 
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
@@ -24,14 +23,6 @@ const LogRegFields = (props) => {
 	const lastNameInput = useInputControl("");
 	const usernameInput = useInputControl("");
 	const passwdInput = useInputControl("");
-
-	/*
-		  "username": "Michael",
-          "password": "goodformike",
-          "firstName": "Michael",
-          "lastName": "Evans",
-          "email": "mevans@gmail.com"
-	*/
 
 	const userInfo = {
 		username: usernameInput.value,
