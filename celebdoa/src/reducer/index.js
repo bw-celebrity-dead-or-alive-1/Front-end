@@ -5,12 +5,9 @@ import {
 } from '../actions';
 
 const initialState = {
-    celebPosition: 0,
-    score: 0,
     celebs: [],
-    celeb: null,
     finished: false,
-    isTesting: false
+    isTesting: true
 };
 
 const rootReducer = (state = initialState, action) => {
