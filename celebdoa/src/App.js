@@ -10,6 +10,7 @@ import CelebAdmin from "./components/Admin";
 import Test from "./components/test/Test.js";
 import CelebEdit from "./components/AdminEdit";
 import DashBoard from './components/components/DashBoard'
+import UserCard from './components/components/UserProfile'
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -32,6 +33,7 @@ function App() {
 					<Route path="/admin" component={CelebAdmin} />
 					<Route path="/test" component={Test} />
 					<Route path="/edit/:id" component={CelebEdit} />
+          <Route path='/userprofile' component={UserCard}/>
 				</Container>
 			</Router>
 		</div>
