@@ -24,7 +24,7 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
-        <DashBoard/>
+        		<DashBoard/>
 				<Navbar />
 				<Container as={sContainer}>
 					<Route path="/login" component={Login} />

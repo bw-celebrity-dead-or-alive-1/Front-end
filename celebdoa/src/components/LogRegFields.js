@@ -4,6 +4,7 @@ import { Button, Card, InputGroup, FormControl } from "react-bootstrap";
 import { useInputControl } from "./hooks/useInputControl.js";
 import ValidateFields from "./Validate";
 
+import { axiosWithAuth } from './axiosWithAuth';
 
 function clg(...x) { console.log(...x); } // because i"m sick of mistyping console.log
 
@@ -18,12 +19,16 @@ const LogRegFields = (props) => {
 	}
 
 	const emailInput = useInputControl("");
+	const firstNameInput = useInputControl("");
+	const lastNameInput = useInputControl("");
 	const usernameInput = useInputControl("");
 	const passwdInput = useInputControl("");
 
 	const userInfo = {
 		username: usernameInput.value,
 		password: passwdInput.value,
+		firstName: firstNameInput.value,
+		lastName: lastNameInput.value
 	};
 
 	if (isReg) {
@@ -43,9 +48,15 @@ const LogRegFields = (props) => {
 			return
 		} else {
 			clg("login submitted", userInfo);
-			/* 
-			form submission here
-			 */
+			axiosWithAuth()
+				.post(title == "Register" ? "/users/register" : "/users/login", userInfo)
+				.then(res => {
+					clg("login: ", res);
+					localStorage.setItem("token", res.data.token);
+				})
+				.catch(err => {
+					clg(err.message);
+				})
 		}
 	};
 
@@ -57,6 +68,12 @@ const LogRegFields = (props) => {
 				</Card.Header>
 				<Card.Body style={{ padding: "2rem" }}>
 					<EmailField emailInput={emailInput} isReg={isReg} />
+					<InputGroup className="mb-3">
+						<FormControl {...firstNameInput} placeholder="First Name" />
+					</InputGroup>
+					<InputGroup className="mb-3">
+						<FormControl {...lastNameInput} placeholder="Last Name" />
+					</InputGroup>
 					<InputGroup className="mb-3">
 						<FormControl {...usernameInput} placeholder="Username" />
 					</InputGroup>
