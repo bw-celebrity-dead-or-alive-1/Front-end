@@ -17,7 +17,7 @@ export default function DashBoard(){
             <div>
                 <h2>already taken the quiz and want to view your score?</h2>
                 <Button>Log in!</Button>
-                    <Link to='https://celebridead.netlify.com/'></Link>
+                    <Link to="/Login"></Link>
             </div>
         </section>
 
